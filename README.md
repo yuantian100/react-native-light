@@ -12,12 +12,12 @@ react-native link react-native-light
 ## Usage
 
 ### Methods
-| Prop | Description |
-| ---- | :------: |
-| turnLightOn | trun light on |
-| turnLightOff | turn light off |
-| toggle | toggle light |
-| isLightActive | check if light is active |
+| Method Name | Return type | Description |
+| ---- | :-----: |:-------: |
+| turnLightOn |  | trun light on |
+| turnLightOff |  | turn light off |
+| toggle |  |toggle light |
+| isLightActive | Boolean | if light is active |
 
 ```js
 import { turnLightOn, turnLightOff, toggle } from "react-native-light";
