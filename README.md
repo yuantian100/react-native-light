@@ -36,18 +36,43 @@ react-native link react-native-light
 
 ### Example
 ```js
+import React, { Component } from 'react';
+import { StyleSheet, Button, View } from 'react-native';
 import { turnLightOn, turnLightOff, toggle, isLightActive } from "react-native-light";
 
-  async checkState() {
+export default class App extends Component {
+
+  async showState() {
     const state = await isLightActive();
-    this.setState({
-      light: state
-    });
+    alert(state);
   }
 
-<Button title='on' onPress={() => turnLightOn()} />
-<Button title='off' onPress={() => turnLightOff()} />
-<Button title='toggle' onPress={() => toggle()} />
-<Button title='state' onPress={() => this.checkState()} />
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={styles.buttons}>
+          <Button title='on' onPress={() => turnLightOn()} />
+          <Button title='off' onPress={() => turnLightOff()} />
+          <Button title='toggle' onPress={() => toggle()} />
+          <Button title='state' onPress={() => this.showState()} />
+        </View>
+      </View>
+      );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF'
+  },
+  buttons: {
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: 200
+  }
+});
 ```
 
