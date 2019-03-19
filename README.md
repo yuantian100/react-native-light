@@ -4,10 +4,23 @@
 
 React Native module for mobile flashlight. (IOS / ANDROID)
 
-## Install
+## Installation
+
+Using yarn:
 
 ```shell
 yarn add react-native-light
+```
+
+or using npm:
+
+```shell
+npm install --save react-native-light
+```
+
+## Linking
+
+```shell
 react-native link react-native-light
 ```
 
