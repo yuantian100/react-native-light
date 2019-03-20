@@ -1,13 +1,23 @@
 {
   "name": "react-native-light",
-  "version": "1.0.5",
-  "description": "",
+  "version": "1.0.6",
+  "description": "React Native module for mobile flashlight. (IOS / ANDROID)",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/yuantian100/react-native-light.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "homepage": "https://github.com/yuantian100/react-native-light",
   "keywords": [
-    "react-native"
+    "react-native",
+    "flashlight",
+    "react-component",
+    "react",
+    "ios",
+    "android"
   ],
   "author": "Yuan Tian",
   "license": "MIT"

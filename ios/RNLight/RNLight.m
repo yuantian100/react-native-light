@@ -9,15 +9,17 @@ RCT_EXPORT_MODULE();
 RCT_EXPORT_METHOD(turnLightOn)
 {
     Light *light = [[Light alloc] init];
+    bool isLightActive = [light isLightActive];
     [light turnLightOn];
-    [self onLightTurnOn];
+    if(!isLightActive){[self onLightTurnedOn];}
 }
 
 RCT_EXPORT_METHOD(turnLightOff)
 {
     Light *light = [[Light alloc] init];
+    bool isLightActive = [light isLightActive];
     [light turnLightOff];
-    [self onLightTurnOff];
+    if(isLightActive){[self onLightTurnedOff];}
 }
 
 RCT_EXPORT_METHOD(toggle)
@@ -26,9 +28,9 @@ RCT_EXPORT_METHOD(toggle)
     bool isLightActive = [light isLightActive];
     [light toggle];
     if (isLightActive) {
-        [self onLightTurnOff];
+        [self onLightTurnedOff];
     }else{
-        [self onLightTurnOn];
+        [self onLightTurnedOn];
     }
 }
 
@@ -41,17 +43,17 @@ RCT_EXPORT_METHOD(isLightActive:(RCTResponseSenderBlock)callback)
 
 - (NSArray<NSString *> *)supportedEvents
 {
-    return @[@"onLightTurnOn", @"onLightTurnOff"];
+    return @[@"onLightTurnedOn", @"onLightTurnedOff"];
 }
 
-- (void)onLightTurnOn
+- (void)onLightTurnedOn
 {
-    [self sendEventWithName:@"onLightTurnOn" body:@""];
+    [self sendEventWithName:@"onLightTurnedOn" body:@""];
 }
 
-- (void)onLightTurnOff
+- (void)onLightTurnedOff
 {
-    [self sendEventWithName:@"onLightTurnOff" body:@""];
+    [self sendEventWithName:@"onLightTurnedOff" body:@""];
 }
 
 @end

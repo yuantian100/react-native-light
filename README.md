@@ -27,24 +27,39 @@ react-native link react-native-light
 ## Usage
 
 ### Methods
-| Method Name | Return type | Description |
+| Method Name | Return type | Notes |
 | ---- | :-----: |:-------: |
 | turnLightOn |  | trun light on |
 | turnLightOff |  | turn light off |
 | toggle |  |toggle light |
 | isLightActive | Boolean | if light is active |
 
+### Events
+| Event Name | Returns | Notes |
+| ---- | :-----: |:-------: |
+| onLightTurnedOn |  | Callback that is called once the light turned on. |
+| onLightTurnedOff |  | Callback that is called once the light turned off. |
+
 ### Example
 ```js
 import React, { Component } from 'react';
 import { StyleSheet, Button, View } from 'react-native';
-import { turnLightOn, turnLightOff, toggle, isLightActive } from "react-native-light";
+import { turnLightOn, turnLightOff, toggle, isLightActive, lightEventEmitter } from "react-native-light";
 
-export default class App extends Component {
+export default class App extends Component {  
 
   async showState() {
     const state = await isLightActive();
     alert(state);
+  }
+
+  componentDidMount() {
+    lightEventEmitter.addListener('onLightTurnedOn', () => {
+      alert('you just turned on the light')
+    });
+    lightEventEmitter.addListener('onLightTurnedOff', () => {
+      alert('you just turned off the light')
+    });
   }
 
   render() {
