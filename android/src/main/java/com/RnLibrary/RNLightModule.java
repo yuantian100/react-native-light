@@ -3,6 +3,8 @@ package com.RnLibrary;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.ReactContext;
+import com.facebook.react.modules.core.DeviceEventManagerModule;
 import com.facebook.react.bridge.Callback;
 
 import android.hardware.Camera;
@@ -11,6 +13,7 @@ import android.content.pm.PackageManager;
 public class RNLightModule extends ReactContextBaseJavaModule {
 
     private final ReactApplicationContext reactContext;
+    private Boolean isTorchOn = false;
     private Camera camera;
 
     public RNLightModule(ReactApplicationContext reactContext) {
@@ -38,7 +41,6 @@ public class RNLightModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void isLightActive(Callback successCallback){
         successCallback.invoke(this.isFlashActive());
-
     }
 
     @ReactMethod
@@ -49,6 +51,7 @@ public class RNLightModule extends ReactContextBaseJavaModule {
             params.setFlashMode(Camera.Parameters.FLASH_MODE_TORCH);
             camera.setParameters(params);
             camera.startPreview();
+            this.sendEvent(reactContext, "onLightTurnedOn" );
         }
     }
 
@@ -61,6 +64,7 @@ public class RNLightModule extends ReactContextBaseJavaModule {
             camera.stopPreview();
             camera.release();
             camera = null;
+            this.sendEvent(reactContext, "onLightTurnedOff" );
         }
     }
 
@@ -72,4 +76,11 @@ public class RNLightModule extends ReactContextBaseJavaModule {
             this.turnLightOn();
         }
     }
+
+    private void sendEvent(ReactContext reactContext, String eventName) {
+        reactContext
+                .getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class)
+                .emit(eventName, "");
+    }
+
 }
