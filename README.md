@@ -40,7 +40,7 @@ react-native link react-native-light
 | onLightTurnedOn |  | Callback that is called once the light turned on. |
 | onLightTurnedOff |  | Callback that is called once the light turned off. |
 
-### Example
+## Example
 ```js
 import React, { Component } from 'react';
 import { StyleSheet, Button, View } from 'react-native';
