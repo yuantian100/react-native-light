@@ -3,6 +3,17 @@
 #import "Light.h"
 
 @implementation RNLight
+{
+    bool hasListeners;
+}
+
+-(void)startObserving {
+    hasListeners = YES;
+}
+
+-(void)stopObserving {
+    hasListeners = NO;
+}
 
 RCT_EXPORT_MODULE();
 
@@ -48,12 +59,16 @@ RCT_EXPORT_METHOD(isLightActive:(RCTResponseSenderBlock)callback)
 
 - (void)onLightTurnedOn
 {
-    [self sendEventWithName:@"onLightTurnedOn" body:@""];
+    if (hasListeners) {
+        [self sendEventWithName:@"onLightTurnedOn" body:@""];
+     }
 }
 
 - (void)onLightTurnedOff
 {
-    [self sendEventWithName:@"onLightTurnedOff" body:@""];
+    if (hasListeners) {
+        [self sendEventWithName:@"onLightTurnedOff" body:@""];
+    }
 }
 
 @end
