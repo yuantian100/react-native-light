@@ -13,7 +13,6 @@ import android.content.pm.PackageManager;
 public class RNLightModule extends ReactContextBaseJavaModule {
 
     private final ReactApplicationContext reactContext;
-    private Boolean isTorchOn = false;
     private Camera camera;
 
     public RNLightModule(ReactApplicationContext reactContext) {
